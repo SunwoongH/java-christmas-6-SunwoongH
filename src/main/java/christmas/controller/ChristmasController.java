@@ -18,12 +18,32 @@ public class ChristmasController {
     }
 
     public void startEventPlanner() {
-        int visitDate = inputView.readVisitDate();
-        Order order = inputView.readMenu();
+        int visitDate = getVisitDate();
+        Order order = getOrder();
+        printBeforeApplyEvent(visitDate, order);
+        Result result = applyEventAndGetResult(visitDate, order);
+        printAfterApplyEvent(result);
+    }
+
+    private int getVisitDate() {
+        return inputView.readVisitDate();
+    }
+
+    private Order getOrder() {
+        return inputView.readMenu();
+    }
+
+    private void printBeforeApplyEvent(int visitDate, Order order) {
         outputView.printVisitDateEvent(visitDate);
         outputView.printMenu(order);
         outputView.printTotalOrderAmount(order);
-        Result result = christmasService.applyEvent(visitDate, order);
+    }
+
+    private Result applyEventAndGetResult(int visitDate, Order order) {
+        return christmasService.applyEvent(visitDate, order);
+    }
+
+    private void printAfterApplyEvent(Result result) {
         outputView.printGiftEvent(result);
         outputView.printEvent(result);
         outputView.printTotalProfitPrice(result);
