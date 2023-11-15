@@ -14,18 +14,24 @@ public class Order {
         menus.put(menu, count);
     }
 
-    public long countDessertMenu() {
+    public Map<Menu, Integer> getMenus() {
+        return menus;
+    }
+
+    public int countDessertMenu() {
         return menus.keySet()
                 .stream()
                 .filter(menu -> menu.getKind().equals("dessert"))
-                .count();
+                .mapToInt(menus::get)
+                .sum();
     }
 
-    public long countMainMenu() {
+    public int countMainMenu() {
         return menus.keySet()
                 .stream()
                 .filter(menu -> menu.getKind().equals("main"))
-                .count();
+                .mapToInt(menus::get)
+                .sum();
     }
 
     public int calculateTotalOrderAmount() {
