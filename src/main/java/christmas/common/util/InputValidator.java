@@ -48,7 +48,8 @@ public interface InputValidator {
 
     private static void validateIsValidMenuEdgeCase(String input) {
         String[] processedData = input.split("-");
-        Menu.of(processedData[0]);
+        Menu menu = Menu.of(processedData[0]);
+        validateOnlyDrinkMenuEdgeCase(menu.getKind());
     }
 
     private static void validateIsValidEdgeCaseTotalCount(String input) {
@@ -94,6 +95,12 @@ public interface InputValidator {
                     seen.add(menu);
                 });
         validateOnlyDrinkMenu(kind);
+    }
+
+    private static void validateOnlyDrinkMenuEdgeCase(String kind) {
+        if (kind.equals("drink")) {
+            throw new ChristmasException(ErrorMessage.ERROR_ORDER);
+        }
     }
 
     private static Menu validateIsValidMenuAndGetMenu(String[] processedData) {
