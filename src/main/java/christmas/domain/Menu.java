@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import christmas.common.constant.ErrorMessage;
+import christmas.common.error.ChristmasException;
+
 import java.util.Arrays;
 
 public enum Menu {
@@ -42,6 +45,6 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.getName().equals(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new ChristmasException(ErrorMessage.ERROR_ORDER));
     }
 }
