@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.common.error.ChristmasException;
 import christmas.domain.Order;
 import christmas.dto.Result;
 import christmas.service.ChristmasService;
@@ -26,11 +27,21 @@ public class ChristmasController {
     }
 
     private int getVisitDate() {
-        return inputView.readVisitDate();
+        try {
+            return inputView.readVisitDate();
+        } catch (ChristmasException e) {
+            System.out.println(e.getMessage());
+            return getVisitDate();
+        }
     }
 
     private Order getOrder() {
-        return inputView.readMenu();
+        try {
+            return inputView.readMenu();
+        } catch (ChristmasException e) {
+            System.out.println(e.getMessage());
+            return getOrder();
+        }
     }
 
     private void printBeforeApplyEvent(int visitDate, Order order) {
