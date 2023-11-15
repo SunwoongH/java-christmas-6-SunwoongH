@@ -59,13 +59,17 @@ public class OutputView {
     public void printTotalProfitPrice(Result result) {
         System.out.println("\n<총혜택 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        if (result.profitPrice() == 0) {
+            System.out.println("0원");
+            return;
+        }
         System.out.printf("-%s원\n", decimalFormat.format(result.profitPrice()));
     }
 
     public void printPaymentPrice(Result result) {
         System.out.println("\n<할인 후 예상 결제 금액>");
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.printf("-%s원\n", decimalFormat.format(result.paymentPrice()));
+        System.out.printf("%s원\n", decimalFormat.format(result.paymentPrice()));
     }
 
     public void printEventBadge(Result result) {
