@@ -28,7 +28,7 @@ class InputValidatorTest {
     }
 
     @DisplayName("숫자가 아닌 값을 날짜에 입력하면 예외가 발생한다.")
-    @ValueSource(strings = {"a", "~", "??"})
+    @ValueSource(strings = {"a", "~", "??", "", " "})
     @ParameterizedTest
     void 숫자가_아닌_값을_날짜에_입력하면_예외가_발생한다(String input) {
         // when & then
