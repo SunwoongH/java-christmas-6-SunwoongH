@@ -14,10 +14,6 @@ public class Order {
         menus.put(menu, count);
     }
 
-    public Map<Menu, Integer> getMenus() {
-        return menus;
-    }
-
     public long countDessertMenu() {
         return menus.keySet()
                 .stream()
@@ -30,5 +26,12 @@ public class Order {
                 .stream()
                 .filter(menu -> menu.getKind().equals("main"))
                 .count();
+    }
+
+    public int calculateTotalOrderAmount() {
+        return menus.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 }
