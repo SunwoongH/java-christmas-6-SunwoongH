@@ -29,7 +29,6 @@ public class ChristmasService {
     }
 
     private Result getDefaultResult(Order order, Event event) {
-        return Result.of(false, false, 0, 0, 0,
-                0, 0, order.calculateTotalOrderAmount(), event.getEventBadge(order));
+        return Result.of(false, false, 0, 0, 0, 0, 0, order.calculateTotalOrderAmount(), event.getEventBadge(order));
     }
 }
