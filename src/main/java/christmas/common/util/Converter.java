@@ -11,12 +11,19 @@ public interface Converter {
     }
 
     static Order convertToOrder(String input) {
-        Order order = new Order();
-        boolean isEdgeCase = input.matches("^[가-힣]+-[1-9]+$");
-        if (isEdgeCase) {
+        Order order = generateOrder();
+        if (isEdgeCase(input)) {
             return getEdgeCaseOrder(input, order);
         }
         return getOrder(input, order);
+    }
+
+    private static Order generateOrder() {
+        return new Order();
+    }
+
+    private static boolean isEdgeCase(String input) {
+        return input.matches("^[가-힣]+-[1-9]+$");
     }
 
     private static Order getEdgeCaseOrder(String input, Order order) {
